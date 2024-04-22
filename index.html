@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kisan Ka Phal - Fresh Fruits From Farm</title>
+<style>
+/* CSS Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.cart {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart:hover {
+    background-color: #45a049;
+}
+
+.bill {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    display: none;
+}
+
+.total-price {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.input-field {
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="tel"],
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="button"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #45a049;
+}
+
+/* End of CSS Styles */
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="color: #008080;">Kisan Ka Phal</h1>
+    <h2>Fresh Fruits From Farm</h2>
+
+    <div class="card">
+        <img src="apple.jpg" alt="Apple">
+        <h3>Apple</h3>
+        <p>$2.99</p>
+        <button class="cart" onclick="addToCart('Apple')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="banana.jpg" alt="Banana">
+        <h3>Banana</h3>
+        <p>$1.99</p>
+        <button class="cart" onclick="addToCart('Banana')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="orange.jpg" alt="Orange">
+        <h3>Orange</h3>
+        <p>$3.49</p>
+        <button class="cart" onclick="addToCart('Orange')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="kiwi.jpg" alt="Kiwi">
+        <h3>Kiwi</h3>
+        <p>$2.79</p>
+        <button class="cart" onclick="addToCart('Kiwi')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="grapes.jpg" alt="Grapes">
+        <h3>Grapes</h3>
+        <p>$4.99</p>
+        <button class="cart" onclick="addToCart('Grapes')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="strawberry.jpg" alt="Strawberry">
+        <h3>Strawberry</h3>
+        <p>$3.99</p>
+        <button class="cart" onclick="addToCart('Strawberry')">Add to Cart</button>
+    </div>
+
+    <div id="bill" class="bill"></div>
+
+    <form id="order-form" class="form">
+        <h2>Delivery Details</h2>
+        <div class="input-field">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="input-field">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="total-price">
+            <h3>Total Price</h3>
+            <p id="total"></p>
+            <p id="discount"></p>
+            <p id="payable"></p>
+        </div>
+        <button type="button" onclick="placeOrder()">Place Order</button>
+    </form>
+</div>
+
+<script>
+// JavaScript Code
+let cart = [];
+let total = 0;
+
+function addToCart(item) {
+    cart.push(item);
+    total += getItemPrice(item);
+    showCartTotal();
+}
+
+function getItemPrice(item) {
+    switch (item) {
+        case 'Apple':
+            return 2.99;
+        case 'Banana':
+            return 1.99;
+        case 'Orange':
+            return 3.49;
+        case 'Kiwi':
+            return 2.79;
+        case 'Grapes':
+            return 4.99;
+        case 'Strawberry':
+            return 3.99;
+        default:
+            return 0;
+    }
+}
+
+function showCartTotal() {
+    let billHTML = '<h2>Your Cart</h2>';
+    for (let i = 0; i < cart.length; i++) {
+        billHTML += `<p>${cart[i]} - $${getItemPrice(cart[i]).toFixed(2)}</p>`;
+    }
+    billHTML += `<h3>Total: $${total.toFixed(2)}</h3>`;
+    document.getElementById('bill').innerHTML = billHTML;
+
+    if (cart.length > 3) {
+        let discount = total * 0.2;
+        let payable = total - discount;
+        document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+        document.getElementById('discount').textContent = `Discount (20%): -$${discount.toFixed(2)}`;
+        document.getElementById('payable').textContent = `Payable Amount: $${payable.toFixed(2)}`;
+    } else {
+        document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+        document.getElementById('discount').textContent = '';
+        document.getElementById('payable').textContent = '';
+    }
+    document.getElementById('order-form').style.display = 'block';
+}
+
+function placeOrder() {
+    // Add your order placement logic here
+    alert('Order Placed Successfully!');
+    // Reset cart and total
+    cart = [];
+    total = 0;
+    // Clear the cart display
+    document.getElementById('bill').innerHTML = '';
+    // Hide the order form
+    document.getElementById('order-form').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
