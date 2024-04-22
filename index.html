@@ -1,248 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kisan Ka Phal - Fresh Fruits From Farm</title>
-<style>
-/* CSS Styles */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f7f7;
-    margin: 0;
-    padding: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits OF Farmers</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-h1, h2 {
-    text-align: center;
-    color: #333;
-}
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
 
-.card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    transition: transform 0.3s ease;
-}
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: calc(20% - 40px); /* 20% minus margins */
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+        }
 
-.card:hover {
-    transform: translateY(-5px);
-}
+        footer {
+            background-color: #333333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
 
-.card img {
-    width: 100%;
-    border-radius: 8px;
-}
+        aside {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-left: 2px solid #4CAF50;
+            width: 30%;
+        }
 
-.cart {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        #cart {
+            margin-bottom: 20px;
+        }
 
-.cart:hover {
-    background-color: #45a049;
-}
+        #cart-summary {
+            margin-top: 20px;
+        }
 
-.bill {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
+        #order-form {
+            margin-top: 20px;
+        }
 
-.form {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    display: none;
-}
+        #place-order-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-.total-price {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
+        input[type="text"],
+        button {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+        }
 
-.input-field {
-    margin-bottom: 10px;
-}
+        input[type="text"] {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
 
-input[type="text"],
-input[type="tel"],
-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+        button:hover {
+            background-color: #45a049;
+        }
 
-button[type="button"] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        #cart-items li {
+            margin-bottom: 5px;
+        }
 
-button[type="button"]:hover {
-    background-color: #45a049;
-}
-
-/* End of CSS Styles */
-</style>
+        #cart-total,
+        #cart-discount,
+        #cart-payable {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Fruits OF Farmers</h1>
+        <p>Fresh Fruits From Farm</p>
+    </header>
 
-<div class="container">
-    <h1 style="color: #008080;">Kisan Ka Phal</h1>
-    <h2>Fresh Fruits From Farm</h2>
-
-    <div class="card">
-        <img src="apple.jpg" alt="Apple">
-        <h3>Apple</h3>
-        <p>$2.99</p>
-        <button class="cart" onclick="addToCart('Apple')">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <img src="banana.jpg" alt="Banana">
-        <h3>Banana</h3>
-        <p>$1.99</p>
-        <button class="cart" onclick="addToCart('Banana')">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <img src="orange.jpg" alt="Orange">
-        <h3>Orange</h3>
-        <p>$3.49</p>
-        <button class="cart" onclick="addToCart('Orange')">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <img src="kiwi.jpg" alt="Kiwi">
-        <h3>Kiwi</h3>
-        <p>$2.79</p>
-        <button class="cart" onclick="addToCart('Kiwi')">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <img src="grapes.jpg" alt="Grapes">
-        <h3>Grapes</h3>
-        <p>$4.99</p>
-        <button class="cart" onclick="addToCart('Grapes')">Add to Cart</button>
-    </div>
-
-    <div class="card">
-        <img src="strawberry.jpg" alt="Strawberry">
-        <h3>Strawberry</h3>
-        <p>$3.99</p>
-        <button class="cart" onclick="addToCart('Strawberry')">Add to Cart</button>
-    </div>
-
-    <div id="bill" class="bill"></div>
-
-    <form id="order-form" class="form">
-        <h2>Delivery Details</h2>
-        <div class="input-field">
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required>
+    <main>
+        <div class="card">
+            <img src="apple.jpg" alt="Apple">
+            <h2>Apple</h2>
+            <p>$1.50</p>
+            <button onclick="addToCart('Apple')">Add to Cart</button>
         </div>
-        <div class="input-field">
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
+        <div class="card">
+            <img src="banana.jpg" alt="Banana">
+            <h2>Banana</h2>
+            <p>$0.80</p>
+            <button onclick="addToCart('Banana')">Add to Cart</button>
         </div>
-        <div class="total-price">
-            <h3>Total Price</h3>
-            <p id="total"></p>
-            <p id="discount"></p>
-            <p id="payable"></p>
+        <div class="card">
+            <img src="orange.jpg" alt="Orange">
+            <h2>Orange</h2>
+            <p>$1.20</p>
+            <button onclick="addToCart('Orange')">Add to Cart</button>
         </div>
-        <button type="button" onclick="placeOrder()">Place Order</button>
-    </form>
-</div>
+        <div class="card">
+            <img src="grapes.jpg" alt="Grapes">
+            <h2>Grapes</h2>
+            <p>$2.00</p>
+            <button onclick="addToCart('Grapes')">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="strawberry.jpg" alt="Strawberry">
+            <h2>Strawberry</h2>
+            <p>$2.50</p>
+            <button onclick="addToCart('Strawberry')">Add to Cart</button>
+        </div>
+        <div class="card">
+            <img src="watermelon.jpg" alt="Watermelon">
+            <h2>Watermelon</h2>
+            <p>$3.00</p>
+            <button onclick="addToCart('Watermelon')">Add to Cart</button>
+        </div>
+    </main>
 
-<script>
-// JavaScript Code
-let cart = [];
-let total = 0;
+    <aside>
+        <div id="cart">
+            <h2>Cart</h2>
+            <ul id="cart-items"></ul>
+            <div id="cart-summary">
+                <p id="cart-total">Total: $0.00</p>
+                <p id="cart-discount">Discount (20%): -$0.00</p>
+                <p id="cart-payable">Payable: $0.00</p>
+            </div>
+        </div>
+        <div id="order-form">
+            <h2>Order Details</h2>
+            <input type="text" id="address" placeholder="Enter Your Address">
+            <input type="text" id="phone" placeholder="Enter Your Phone Number">
+            <button id="place-order-btn" onclick="placeOrder()">Place Order</button>
+        </div>
+    </aside>
 
-function addToCart(item) {
-    cart.push(item);
-    total += getItemPrice(item);
-    showCartTotal();
-}
+    <footer>
+        <p>&copy; 2024 Fruits OF Farmers. All rights reserved.</p>
+    </footer>
 
-function getItemPrice(item) {
-    switch (item) {
-        case 'Apple':
-            return 2.99;
-        case 'Banana':
-            return 1.99;
-        case 'Orange':
-            return 3.49;
-        case 'Kiwi':
-            return 2.79;
-        case 'Grapes':
-            return 4.99;
-        case 'Strawberry':
-            return 3.99;
-        default:
-            return 0;
-    }
-}
+    <script>
+        // JavaScript Code
+        let cart = [];
 
-function showCartTotal() {
-    let billHTML = '<h2>Your Cart</h2>';
-    for (let i = 0; i < cart.length; i++) {
-        billHTML += `<p>${cart[i]} - $${getItemPrice(cart[i]).toFixed(2)}</p>`;
-    }
-    billHTML += `<h3>Total: $${total.toFixed(2)}</h3>`;
-    document.getElementById('bill').innerHTML = billHTML;
+        function addToCart(itemName) {
+            const item = products.find(product => product.name === itemName);
+            cart.push(item);
+            renderCart();
+        }
 
-    if (cart.length > 3) {
-        let discount = total * 0.2;
-        let payable = total - discount;
-        document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
-        document.getElementById('discount').textContent = `Discount (20%): -$${discount.toFixed(2)}`;
-        document.getElementById('payable').textContent = `Payable Amount: $${payable.toFixed(2)}`;
-    } else {
-        document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
-        document.getElementById('discount').textContent = '';
-        document.getElementById('payable').textContent = '';
-    }
-    document.getElementById('order-form').style.display = 'block';
-}
+        function renderCart() {
+            const cartItems = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            const cartDiscount = document.getElementById("cart-discount");
+            const cartPayable = document.getElementById("cart-payable");
 
-function placeOrder() {
-    // Add your order placement logic here
-    alert('Order Placed Successfully!');
-    // Reset cart and total
-    cart = [];
-    total = 0;
-    // Clear the cart display
-    document.getElementById('bill').innerHTML = '';
-    // Hide the order form
-    document.getElementById('order-form').style.display = 'none';
-}
-</script>
+            cartItems.innerHTML = "";
+            let total = 0;
 
+            cart.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+                total += item.price;
+            });
+
+            let discount = 0;
+            if (cart.length > 2) {
+                discount = 0.2 * total;
+            }
+            const payable = total - discount;
+
+            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            cartDiscount.textContent = `Discount (20%): -$${discount.toFixed(2)}`;
+            cartPayable.textContent = `Payable: $${payable.toFixed(2)}`;
+        }
+
+        function placeOrder() {
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add some items before placing an order.");
+                return;
+            }
+
+            if (!address || !phone) {
+                alert("Please fill in your address and phone number.");
+                return;
+            }
+
+            let bill = "Order Details:\n";
+            cart.forEach(item => {
+                bill += `${item.name}: $${item.price.toFixed(2)}\n`;
+            });
+            bill += `\nTotal: ${document.getElementById("cart-total").textContent}\n`;
+            bill += `${document.getElementById("cart-discount").textContent}\n`;
+            bill += `${document.getElementById("cart-payable").textContent}\n`;
+            bill += `\nAddress: ${address}\n`;
+            bill += `Phone Number: ${phone}`;
+
+            alert(bill);
+
+            cart = [];
+            renderCart();
+            document.getElementById("address").value = "";
+            document.getElementById("phone").value = "";
+        }
+
+        const products = [
+            {
+                name: "Apple",
+                price: 1.5,
+                image: "apple.jpg"
+            },
+            {
+                name: "Banana",
+                price: 0.8,
+                image: "banana.jpg"
+            },
+            {
+                name: "Orange",
+                price: 1.2,
+                image: "orange.jpg"
+            },
+            {
+                name: "Grapes",
+                price: 2.0,
+                image: "grapes.jpg"
+            },
+            {
+                name: "Strawberry",
+                price: 2.5,
+                image: "strawberry.jpg"
+            },
+            {
+                name: "Watermelon",
+                price: 3.0,
+                image: "watermelon.jpg"
+            }
+        ];
+    </script>
 </body>
 </html>
